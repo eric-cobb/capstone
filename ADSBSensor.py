@@ -5,11 +5,11 @@ from time import sleep
 
 offline = False
 healthy = True
-flux_cap = 1.21
+flux_capacitor = 1.21
 status = 'Operating nominally'
 latency = 0
 outages = [
-    '{"outage.category": "power", "outage.message": "Great Scott! Flux capacitor surge detected (' + str(flux_cap) + 'GigaWatt). Shutting down to avoid going back to 2051."}',
+    '{"outage.category": "power", "outage.message": "Great Scott! Flux capacitor surge detected (' + str(flux_capacitor) + 'GigaWatt). Shutting down to avoid going back to 2051."}',
     '{"outage.category": "endurance", "outage.message": "This is hard, and I\'m tired. Going offline."}',
     '{"outage.category": "power", "outage.message": "My battery is low and it\'s getting dark."}',
     '{"outage.category": "software", "outage.message": "Task failed successfully."}',
@@ -20,51 +20,49 @@ outages = [
 
 class ADSBSensor:
 
-    def __init__(self, sid, lat, lon, city=None, state=None, tier=None):
+    def __init__(self, sid, lat, lon, city=None, state=None, tier=None, off=False, health=True, flux_cap=1.21):
         self.id = sid
         self.city = city
         self.state = state
         self.latitude = lat
         self.longitude = lon
         self.tier = tier
+        self.offline = self.set_offline(off)
+        self.healthy = self.set_healthy(health)
+        self.flux_capacitor = self.set_flux_cap(flux_cap)
 
     def startup():
         pass
 
     def set_healthy(self, health):
-        global healthy
-        healthy = health
+        self.healthy = health
+        if healthy:
+            self.status = 'Operating nominally'
 
     def set_offline(self, state):
-        global offline, flux_cap, status
-        offline = state
-        flux_cap = 0.0
+        self.offline = state
+        self.flux_capacitor = 0.0
         if offline:
-            status = 'Offline'
+            self.status = 'Offline'
     
     def set_flux_cap(self, flux_cap_value):
-        global flux_cap, status
-        flux_cap = flux_cap_value
-        if flux_cap > 1.21:
+        self.flux_capacitor = flux_cap_value
+        if flux_capacitor > 1.21:
             set_healthy(False)
-            status = outages[0]
+            self.status = outages[0]
 
     def set_latency(self, new_latency):
-        global latency
-        latency = new_latency
+        self.latency = new_latency
 
     def status(self):
-        global status
-        global outages
-        global flux_cap
-        global latency
         timestamp = datetime.now()
-        msg = '[{"timestamp": "%s", "id": "%s", "city": "%s", "state": "%s", "location": {"latitude": "%s", "longitude": "%s"}, "tier": "%s", "flux_capacitor": "%s", "status": "%s"}]' % (
+        msg = '[{"timestamp": "%s", "id": "%s", "city": "%s", "state": "%s", "location": {"latitude": "%s", "longitude": "%s"}, "tier": "%s", "healthy": "%s", "offline": "%s", "flux_capacitor": "%s", "status": "%s"}]' % (
             timestamp,
             self.id, self.city,
             self.state, self.latitude, 
             self.longitude, self.tier,
-            flux_cap, status)
+            self.healthy, self.offline,
+            self.flux_capacitor, self.status)
         
         # Artificially add latency
         sleep(latency)

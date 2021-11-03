@@ -5,30 +5,27 @@ import random
 from random import randint
 from time import sleep
 
-adsb_sensors = {}
-
-def setup():
-    global adsb_sensors
-
+def setup_sensors(filename):
+    adsb_sensors = {}
     # Read the CSV file that contains ADS-B sensor data
-    with open('data/adsb.csv', encoding='utf-8-sig') as csvfile:
+    with open(filename, encoding='utf-8-sig') as csvfile:
         reader = csv.DictReader(csvfile)
 
         # For each ADS-B row in CSV file, create ADSBSensor object
         for row in reader:
-            obj = ADSBSensor.ADSBSensor(row['id'], row['lat'], row['lon'], row['city'], row['state'], row['tier'])
+            obj = ADSBSensor.ADSBSensor(row['id'], row['lat'], row['lon'], row['city'], row['state'], row['tier'], row['offline'], row['healthy'], row['flux_cap'])
             adsb_sensors[obj.id] = obj
-
-def poll_sensors():
-    global adsb_sensors
-
-    # Randomize access to the objects in this dictionary
-    adsb_copy = adsb_sensors.copy()
-    keys = list(adsb_copy.keys())
-    random.shuffle(keys)
+    return adsb_sensors
     
+def write_sensor_status(filename, status):
+    pass
+
+def poll_sensors(sensor_list):
+    # Randomize access to the objects in this dictionary
+    keys = list(sensor_list.keys())
+    random.shuffle(keys)
     for key in keys:
-        print(adsb_copy[key].status())
+        print(sensor_list[key].status())
 
 def parse_args():
     parser = argparse.ArgumentParser(prog='ADSBCommand.py', description='Parse command-line arguments')
@@ -38,12 +35,11 @@ def parse_args():
     parser.parse_args()
 
 def main():
-    global adsb_sensors
-    actions = ['set_health', 'set_flux_cap', 'set_offline']
-    poll_sensors()
+    parse_args()
+    # Retrieve list of ADS-B sensors as a dictionary
+    adsb_sensors = setup_sensors('data/adsb.csv')
+    poll_sensors(adsb_sensors)
 
 if __name__ == '__main__':
-    parse_args()
-    setup()
     main()
     
