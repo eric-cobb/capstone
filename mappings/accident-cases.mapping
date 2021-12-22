@@ -1,0 +1,370 @@
+{
+    "properties": {
+        "mkey": { 
+          "type": "keyword" 
+        },
+        "closed": { 
+            "type": "boolean" 
+        },
+        "completionStatus": { 
+            "type": "keyword" 
+        },
+        "hasSafetyRec": { 
+            "type": "boolean" 
+        },
+        "highestInjury": { 
+            "type": "keyword" 
+        },
+        "isStudy": { 
+            "type": "boolean" 
+        },
+        "mode": { 
+            "type": "keyword" 
+        },
+        "ntsbNum": { 
+            "type": "keyword" 
+        },
+        "originalPublishedDate": { 
+            "type": "date" 
+        },
+        "recentReportPublishDate": { 
+            "type": "date" 
+        },
+        "mostRecentReportType": { 
+            "type": "keyword" 
+        },
+        "probableCause": { 
+            "type": "text" 
+        },
+        "city": { 
+            "type": "keyword" 
+        },
+        "country": { 
+            "type": "keyword" 
+        },
+        "eventDate": { 
+            "type": "date" 
+        },
+        "state": { 
+            "type": "keyword" 
+        },
+        "agency": { 
+            "type": "keyword" 
+        },
+        "boardLaunch": { 
+            "type": "boolean" 
+        },
+        "boardMeetingDate": { 
+            "type": "date" 
+        },
+        "docketDate": { 
+            "type": "date" 
+        },
+        "eventType": { 
+            "type": "keyword" 
+        },
+        "reportDate": { 
+            "type": "date" 
+        },
+        "reportNum": { 
+            "type": "keyword" 
+        },
+        "reportType": { 
+            "type": "keyword" 
+        },
+        "aircraft1.aircraftCategory": { 
+            "type": "keyword" 
+        },
+        "aircraft1.amateurBuilt": { 
+            "type": "boolean" 
+        },
+        "aircraft1.make": { 
+            "type": "keyword" 
+        },
+        "aircraft1.model": { 
+            "type": "keyword" 
+        },
+        "aircraft1.numberOfEngines": { 
+            "type": "byte" 
+        },
+        "aircraft1.registrationNumber": { 
+            "type": "keyword" 
+        },
+        "aircraft1.gaFlight": { 
+            "type": "boolean" 
+        },
+        "aircraft1.event1.eventSOEGroup": { 
+            "type": "keyword" 
+        },
+        "aircraft1.event1.eventCode": { 
+            "type": "keyword" 
+        },
+        "aircraft1.event1.isDefiningEvent": { 
+            "type": "boolean" 
+        },
+        "aircraft1.event2.eventSOEGroup": { 
+            "type": "keyword" 
+        },
+        "aircraft1.event2.eventCode": { 
+            "type": "keyword" 
+        },
+        "aircraft1.event2.isDefiningEvent": { 
+            "type": "boolean" 
+        },
+        "aircraft1.event3.eventSOEGroup": { 
+            "type": "keyword" 
+        },
+        "aircraft1.event3.eventCode": { 
+            "type": "keyword" 
+        },
+        "aircraft1.event3.isDefiningEvent": { 
+            "type": "boolean" 
+        },
+        "aircraft1.event4.eventSOEGroup": { 
+            "type": "keyword" 
+        },
+        "aircraft1.event4.eventCode": { 
+            "type": "keyword" 
+        },
+        "aircraft1.event4.isDefiningEvent": { 
+            "type": "boolean" 
+        },
+        "aircraft1.finding1.findingCode": { 
+            "type": "keyword" 
+        },
+        "aircraft1.finding1.findingReportText": { 
+            "type": "keyword" 
+        },
+        "aircraft1.finding1.findingText": { 
+            "type": "text" 
+        },
+        "aircraft1.finding2.indingCode": { 
+            "type": "keyword" 
+        },
+        "aircraft1.finding2.findingReportText": { 
+            "type": "keyword" 
+        },
+        "aircraft1.finding2.findingText": { 
+            "type": "text" 
+        },
+        "aircraft1.finding3.findingCode": { 
+            "type": "keyword" 
+        },
+        "aircraft1.finding3.findingReportText": { 
+            "type": "keyword" 
+        },
+        "aircraft1.finding3.findingText": { 
+            "type": "text" 
+        },
+        "aircraft1.finding4.findingCode": { 
+            "type": "keyword" 
+        },
+        "aircraft1.finding4.findingReportText": { 
+            "type": "keyword" 
+        },
+        "aircraft1.finding4.findingText": { 
+            "type": "text" 
+        },
+        "aircraft1.engines.numEngines": { 
+            "type": "byte" 
+        },
+        "aircraft1.engines.type": { 
+            "type": "keyword" 
+        },
+        "aircraft1.airMedical": { 
+            "type": "boolean" 
+        },
+        "aircraft1.airMedicalType": { 
+            "type": "keyword" 
+        },
+        "aircraft1.flightOperationType": { 
+            "type": "keyword" 
+        },
+        "aircraft1.flightScheduledType": { 
+            "type": "keyword" 
+        },
+        "aircraft1.flightServiceType": { 
+            "type": "keyword" 
+        },
+        "aircraft1.flightTerminalType": { 
+            "type": "keyword" 
+        },
+        "aircraft1.operatorName": { 
+            "type": "text" 
+        },
+        "aircraft1.registeredOwner": { 
+            "type": "text" 
+        },
+        "aircraft1.regulationFlightConductedUnder": { 
+            "type": "keyword" 
+        },
+        "aircraft1.revenueSightseeing": { 
+            "type": "boolean" 
+        },
+        "aircraft1.secondPilotPresent": { 
+            "type": "boolean" 
+        },
+        "aircraft2.aircraftCategory": { 
+            "type": "keyword" 
+        },
+        "aircraft2.amateurBuilt": { 
+            "type": "boolean" 
+        },
+        "aircraft2.make": { 
+            "type": "keyword" 
+        },
+        "aircraft2.model": { 
+            "type": "keyword" 
+        },
+        "aircraft2.numberOfEngines": { 
+            "type": "byte" 
+        },
+        "aircraft2.registrationNumber": { 
+            "type": "keyword" 
+        },
+        "aircraft2.gaFlight": { 
+            "type": "boolean" 
+        },
+        "aircraft2.event1.eventSOEGroup": { 
+            "type": "keyword" 
+        },
+        "aircraft2.event1.eventCode": { 
+            "type": "keyword" 
+        },
+        "aircraft2.event1.isDefiningEvent": { 
+            "type": "boolean" 
+        },
+        "aircraft2.event2.eventSOEGroup": { 
+            "type": "keyword" 
+        },
+        "aircraft2.event2.eventCode": { 
+            "type": "keyword" 
+        },
+        "aircraft2.event2.isDefiningEvent": { 
+            "type": "boolean" 
+        },
+        "aircraft2.event3.eventSOEGroup": { 
+            "type": "keyword" 
+        },
+        "aircraft2.event3.eventCode": { 
+            "type": "keyword" 
+        },
+        "aircraft2.event3.isDefiningEvent": { 
+            "type": "boolean" 
+        },
+        "aircraft2.event4.eventSOEGroup": { 
+            "type": "keyword" 
+        },
+        "aircraft2.event4.eventCode": { 
+            "type": "keyword" 
+        },
+        "aircraft2.event4.isDefiningEvent": { 
+            "type": "boolean" 
+        },
+        "aircraft2.finding1.findingCode": { 
+            "type": "keyword" 
+        },
+        "aircraft2.finding1.findingReportText": { 
+            "type": "keyword" 
+        },
+        "aircraft2.finding1.findingText": { 
+            "type": "text" 
+        },
+        "aircraft2.finding2.findingCode": { 
+            "type": "keyword" 
+        },
+        "aircraft2.finding2.findingReportText": { 
+            "type": "keyword" 
+        },
+        "aircraft2.finding2.findingText": { 
+            "type": "text" 
+        },
+        "aircraft2.finding3.findingCode": { 
+            "type": "keyword" 
+        },
+        "aircraft2.finding3.findingReportText": { 
+            "type": "keyword" 
+        },
+        "aircraft2.finding3.findingText": { 
+            "type": "text" 
+        },
+        "aircraft2.finding4.findingCode": { 
+            "type": "keyword" 
+        },
+        "aircraft2.finding4.findingReportText": { 
+            "type": "keyword" 
+        },
+        "aircraft2.finding4.findingText": { 
+            "type": "text" 
+        },
+        "aircraft2.engines.numEngines": { 
+            "type": "byte" 
+        },
+        "aircraft2.engines.type": { 
+            "type": "keyword" 
+        },
+        "aircraft2.airMedical": { 
+            "type": "boolean" 
+        },
+        "aircraft2.airMedicalType": { 
+            "type": "keyword" 
+        },
+        "aircraft2.flightOperationType": { 
+            "type": "keyword" 
+        },
+        "aircraft2.flightScheduledType": { 
+            "type": "keyword" 
+        },
+        "aircraft2.flightServiceType": { 
+            "type": "keyword" 
+        },
+        "aircraft2.flightTerminalType": { 
+            "type": "keyword" 
+        },
+        "aircraft2.operatorName": { 
+            "type": "text" 
+        },
+        "aircraft2.registeredOwner": { 
+            "type": "text" 
+        },
+        "aircraft2.regulationFlightConductedUnder": { 
+            "type": "keyword" 
+        },
+        "aircraft2.revenueSightseeing": { 
+            "type": "boolean" 
+        },
+        "aircraft2.secondPilotPresent": { 
+            "type": "boolean" 
+        },
+        "airportId": { 
+            "type": "keyword" 
+        },
+        "airportName": { 
+            "type": "keyword" 
+        },
+        "analysisNarrative": { 
+            "type": "text" 
+        },
+        "factualNarrative": { 
+            "type": "text" 
+        },
+        "prelimNarrative": { 
+            "type": "text" 
+        },
+        "fatalInjuryCount": { 
+            "type": "short" 
+        },
+        "minorInjuryCount": { 
+            "type": "short" 
+        },
+        "seriousInjuryCount": { 
+            "type": "short" 
+        },
+        "accidentSiteCondition": { 
+            "type": "keyword" 
+        },
+        "docketOriginalPublishDate": { 
+            "type": "date" 
+        }
+    }
+  }
