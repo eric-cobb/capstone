@@ -65,7 +65,7 @@ class ADSBSensor:
         timestamp = datetime.datetime.utcfromtimestamp(utc_time).strftime("%Y-%m-%dT%H:%M:%SZ")
         msg = '{{"@timestamp": "{time}", "id": "{id}", "city": "{city}", "state": "{state}", "location": {{"lat": "{lat}", "lon": "{lon}"}}, "tier": "{tier}", "healthy": "{health}", "offline": "{offline}", "flux_capacitor": "{flux}", "status": "{status}", "outage.category": "{err_cat}", "outage.message": "{err_msg}"}}'.format(time=timestamp, \
                 id=self.id, city=self.city, state=self.state, lat=self.latitude, \
-                lon=self.longitude, tier=self.tier, health=self.healthy.lower(), offline=self.offline.lower(), \
+                lon=self.longitude, tier=self.tier, health=str(self.healthy).lower(), offline=str(self.offline).lower(), \
                 flux=self.flux_capacitor, status=self.status, err_cat=self.outage_cat, err_msg=self.outage_msg)
         return msg 
     
