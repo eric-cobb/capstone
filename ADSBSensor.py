@@ -42,7 +42,13 @@ class ADSBSensor:
         if self.flux_capacitor > 1.32:
             self.set_healthy(False)
             self.set_offline(True)
-            self.status = self.flux_msgs[0]['outage.message'].format(self.flux_capacitor)
+            self.outage_cat = "Power"
+            self.outage_msg = "Great Scott! Flux capacitor surge detected (" + str(flux_cap_value) + " GigaWatt). Shutting down to avoid going back to 2051."
+            self.set_status("{} Error".format(self.outage_cat).title())
+        elif self.flux_capacitor < 1.21:
+            self.set_healthy(True)
+            self.set_offline(False)
+            self.set_status("Flux Capacitor Underpowered")
 
     def set_random_error(self):
         err_obj = random.choice(self.outages)

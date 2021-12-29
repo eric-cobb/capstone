@@ -73,15 +73,16 @@ def main():
         add_latency = args.latency
 
     # Retrieve list of ADS-B sensors as a dictionary
-    adsb_sensors = setup_sensors(os.path.dirname(__file__) + '/data/adsb/adsb.csv')
+    print(os.path.dirname(__file__))
+    adsb_sensors = setup_sensors(os.path.dirname(os.path.abspath(__file__)) + '/data/adsb/adsb.csv')
 
+    if args.error_rate:
+            assign_errors(adsb_sensors, args.error_rate)
     if args.sid:
         if args.offline:
             adsb_sensors[args.sid].set_offline(True)
         if args.flux_cap:
-            adsb_sensors[args.sid].set_flux_cap(args.flux_cap)
-    if args.error_rate:
-            assign_errors(adsb_sensors, args.error_rate)  
+            adsb_sensors[args.sid].set_flux_cap(args.flux_cap) 
     if args.file:
         poll_sensors(adsb_sensors, args.file)
     else:
