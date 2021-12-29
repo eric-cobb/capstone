@@ -1,0 +1,42 @@
+{
+    "mappings": {
+        "properties": {
+            "@timestamp": { 
+                "type": "date" 
+            },
+            "id": {
+                "type": "keyword"
+            },
+            "city": {
+                "type": "keyword"
+            },
+            "state": {
+                "type": "keyword"
+            },
+            "location": {
+                "type": "geo_point"
+            },
+            "tier": {
+                "type": "keyword"
+            },
+            "healthy": {
+                "type": "boolean"
+            },
+            "offline": {
+                "type": "boolean"
+            },
+            "flux_capacitor": {
+                "type": "double"
+            },
+            "status": {
+                "type": "keyword"
+            },
+            "outage.category": {
+                "type": "keyword"
+            },
+            "outage.message": {
+                "type": "keyword"
+            }
+        }
+    }
+}

@@ -1,72 +1,74 @@
 import random
+import json
+import datetime
+import time
 from random import randint
-from datetime import datetime, time
+from datetime import timezone
 from time import sleep
 
-offline = False
-healthy = True
-flux_capacitor = 1.21
-status = 'Operating nominally'
-latency = 0
-outages = [
-    '{"outage.category": "power", "outage.message": "Great Scott! Flux capacitor surge detected (' + str(flux_capacitor) + 'GigaWatt). Shutting down to avoid going back to 2051."}',
-    '{"outage.category": "endurance", "outage.message": "This is hard, and I\'m tired. Going offline."}',
-    '{"outage.category": "power", "outage.message": "My battery is low and it\'s getting dark."}',
-    '{"outage.category": "software", "outage.message": "Task failed successfully."}',
-    '{"outage.category": "software", "outage.message": "There\'s a glitch in the matrix."}',
-    '{"outage.category": "power", "outage.message": "Vaccuum tube failure."}',
-    '{"outage.category": "power", "outage.message": "Flux capacitor has died of dysentery"}'
-]
-
 class ADSBSensor:
+    from outages import outages
+    offline = False
+    healthy = True
+    flux_capacitor = 1.21
+    status = 'Operating nominally'
+    latency = 0
+    outage_msg = ''
+    outage_cat = ''
 
-    def __init__(self, sid, lat, lon, city=None, state=None, tier=None, off=False, health=True, flux_cap=1.21):
+    def __init__(self, sid, lat, lon, city=None, state=None, tier=None, off=False, health=True, latency=0, flux_cap=1.21):
         self.id = sid
         self.city = city
         self.state = state
         self.latitude = lat
         self.longitude = lon
         self.tier = tier
-        self.offline = self.set_offline(off)
-        self.healthy = self.set_healthy(health)
-        self.flux_capacitor = self.set_flux_cap(flux_cap)
-
-    def startup():
-        pass
+        self.set_offline(off)
+        self.set_healthy(health)
+        self.set_latency(latency)
+        self.set_flux_cap(flux_cap)
 
     def set_healthy(self, health):
         self.healthy = health
-        if healthy:
+        if self.healthy:
             self.status = 'Operating nominally'
 
-    def set_offline(self, state):
-        self.offline = state
-        self.flux_capacitor = 0.0
-        if offline:
-            self.status = 'Offline'
+    def set_offline(self, sys_state):
+        self.offline = sys_state
     
     def set_flux_cap(self, flux_cap_value):
-        self.flux_capacitor = flux_cap_value
-        if flux_capacitor > 1.21:
-            set_healthy(False)
-            self.status = outages[0]
+        if flux_cap_value != '':
+            self.flux_capacitor = float(flux_cap_value)
+        if self.flux_capacitor > 1.32:
+            self.set_healthy(False)
+            self.set_offline(True)
+            self.status = self.flux_msgs[0]['outage.message'].format(self.flux_capacitor)
+
+    def set_random_error(self):
+        err_obj = random.choice(self.outages)
+        self.outage_cat = err_obj['outage.category']
+        self.outage_msg = err_obj['outage.message']
+        self.set_healthy(False)
+        self.set_offline(True)
+        self.set_status("{} error".format(self.outage_cat))
 
     def set_latency(self, new_latency):
         self.latency = new_latency
+    
+    def set_status(self, err_str):
+        self.status = err_str
 
-    def status(self):
-        timestamp = datetime.now()
-        msg = '[{"timestamp": "%s", "id": "%s", "city": "%s", "state": "%s", "location": {"latitude": "%s", "longitude": "%s"}, "tier": "%s", "healthy": "%s", "offline": "%s", "flux_capacitor": "%s", "status": "%s"}]' % (
-            timestamp,
-            self.id, self.city,
-            self.state, self.latitude, 
-            self.longitude, self.tier,
-            self.healthy, self.offline,
-            self.flux_capacitor, self.status)
-        
+    def get_status(self):
         # Artificially add latency
-        sleep(latency)
+        sleep(self.latency)
+        utc_time = time.time()
+        timestamp = datetime.datetime.utcfromtimestamp(utc_time).strftime("%Y-%m-%dT%H:%M:%SZ")
+        msg = '{{"@timestamp": "{time}", "id": "{id}", "city": "{city}", "state": "{state}", "location": {{"lat": "{lat}", "lon": "{lon}"}}, "tier": "{tier}", "healthy": "{health}", "offline": "{offline}", "flux_capacitor": "{flux}", "status": "{status}", "outage.category": "{err_cat}", "outage.message": "{err_msg}"}}'.format(time=timestamp, \
+                id=self.id, city=self.city, state=self.state, lat=self.latitude, \
+                lon=self.longitude, tier=self.tier, health=self.healthy.lower(), offline=self.offline.lower(), \
+                flux=self.flux_capacitor, status=self.status, err_cat=self.outage_cat, err_msg=self.outage_msg)
         return msg 
-
-    def __str__():
-        pass
+    
+    def __str__(self):
+        stat = self.id + ' - ' + self.city + ', ' + self.state
+        return stat
