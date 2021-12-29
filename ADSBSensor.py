@@ -50,7 +50,7 @@ class ADSBSensor:
         self.outage_msg = err_obj['outage.message']
         self.set_healthy(False)
         self.set_offline(True)
-        self.set_status("{} error".format(self.outage_cat))
+        self.set_status("{} Error".format(self.outage_cat).title())
 
     def set_latency(self, new_latency):
         self.latency = new_latency
