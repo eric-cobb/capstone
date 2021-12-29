@@ -4,6 +4,7 @@ import csv
 import random
 from random import randint
 from time import sleep
+import os.path
 
 add_latency = False
 
@@ -72,7 +73,7 @@ def main():
         add_latency = args.latency
 
     # Retrieve list of ADS-B sensors as a dictionary
-    adsb_sensors = setup_sensors('data/adsb/adsb.csv')
+    adsb_sensors = setup_sensors(os.path.dirname(__file__) + 'data/adsb/adsb.csv')
 
     if args.sid:
         if args.offline:
