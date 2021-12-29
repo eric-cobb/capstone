@@ -10,7 +10,7 @@ outages = [
         "outage.message": "This is hard, and I\'m tired. Going offline."
     }, 
     {
-        "outage.category": "Eower",
+        "outage.category": "Power",
         "outage.message": "My battery is low and it\'s getting dark."
     }, 
     {
