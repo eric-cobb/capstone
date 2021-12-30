@@ -39,6 +39,12 @@
         "city": { 
             "type": "keyword" 
         },
+        "geo_data": {
+            "properties": {
+                "city": { "type": "keyword" },
+                "location": { "type": "geo_point" }
+            }
+        },
         "country": { 
             "type": "keyword" 
         },
