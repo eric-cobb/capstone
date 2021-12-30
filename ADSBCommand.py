@@ -29,7 +29,6 @@ def setup_sensors(filename):
     return adsb_sensors
     
 def write_sensor_status(filename, status):
-    #filename.write('{"index": {"_index": "adsb-sensors"}}\n')
     filename.write(status + '\n')
 
 def randomize_list_keys(adsb_list):
@@ -55,6 +54,7 @@ def parse_args():
     parser.add_argument('--sensor-offline', dest='offline', action='store_false', help='Make the sensor start in Offline mode (True or False)')
     parser.add_argument('--sensor', dest='sid', action='store', help='The sensor ID to change')
     parser.add_argument('--flux-capacitor', dest='flux_cap', action='store', type=float, help='Set the initial flux capacitor value')
+    parser.add_argument('--random-flux', dest='flux_rate', action='store', help='Assign random flux capacitor values to a random sample of sensors')
     parser.add_argument('--error-rate', dest='error_rate', action='store', help='Percentage of sensors to assign some kind of error')
     parser.add_argument('--file', dest='file', action='store', help='Write the output to this file')
     return parser.parse_args()
@@ -64,6 +64,12 @@ def assign_errors(adsb_sensors, rate):
     to_be_changed = random.choices(list(adsb_sensors.items()), k=num_to_change)
     for obj in to_be_changed:
         obj[1].set_random_error()
+
+def assign_flux_values(adsb_sensors, rate):
+    num_to_change = round(len(adsb_sensors) * (int(rate)/100))
+    to_be_changed = random.choices(list(adsb_sensors.items()), k=num_to_change)
+    for obj in to_be_changed:
+        obj[1].set_flux_cap(round(random.uniform(0.92, 1.99), 2))
 
 def main():
     global add_latency
@@ -77,6 +83,8 @@ def main():
 
     if args.error_rate:
             assign_errors(adsb_sensors, args.error_rate)
+    if args.flux_rate:
+        assign_flux_values(adsb_sensors, args.flux_rate)
     if args.sid:
         if args.offline:
             adsb_sensors[args.sid].set_offline(True)
