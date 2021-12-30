@@ -1,7 +1,7 @@
 flux_msgs = [
     {
         "outage.category": "Power", 
-        "outage.message": "Great Scott! Flux capacitor surge detected ({} GigaWatt). Shutting down to avoid going back to 2051." 
+        "outage.message": "Great Scott! Flux capacitor surge detected ({} GigaWatt). Shutting down to avoid going back to year 2051." 
     }
 ]
 outages = [ 
@@ -27,10 +27,26 @@ outages = [
     },
     {
         "outage.category": "Power",
-        "outage.message": "Retro Encabulator has died of dysentery"
+        "outage.message": "Retro Encabulator has died of dysentery."
     },
     {
-        "outage.category": "Power",
-        "outage.message": "Unilateral Phase Detractor unable to synchronize with Cardinal Gram Meters"
+        "outage.category": "Sychronization",
+        "outage.message": "Unilateral Phase Detractor unable to synchronize with Cardinal Gram Meters."
+    },
+    {
+        "outage.category": "Electical",
+        "outage.message": "Inverse reactivate current not achieved."
+    },
+    {
+        "outage.category": "Electical",
+        "outage.message": "Modial interaction of magneto reluctance and capacative duractance."
+    },
+    {
+        "outage.category": "Hardware",
+        "outage.message": "Not ready reading drive A. Abort, Retry, Fail?"
+    },
+    {
+        "outage.category": "Hardware",
+        "outage.message": "Unable to determine the airspeed velocity of an unladen swallow."
     }
 ]
