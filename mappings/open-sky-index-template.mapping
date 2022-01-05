@@ -1,0 +1,90 @@
+{
+    "index_templates" : [
+        {
+        "name" : "open-sky",
+        "index_template" : {
+            "index_patterns" : [
+            "open-sky*"
+            ],
+            "template" : {
+            "settings" : {
+                "index" : {
+                "lifecycle" : {
+                    "name" : "open-sky-ilm-policy"
+                },
+                "number_of_replicas" : "1"
+                }
+            },
+            "mappings" : {
+                "_routing" : {
+                "required" : false
+                },
+                "_source" : {
+                "excludes" : [ ],
+                "includes" : [ ],
+                "enabled" : true
+                },
+                "dynamic" : false,
+                "dynamic_templates" : [ ],
+                "properties" : {
+                "last_position_report" : {
+                    "type" : "date"
+                },
+                "geo_altitude" : {
+                    "type" : "long"
+                },
+                "heading" : {
+                    "type" : "short"
+                },
+                "vertical_speed" : {
+                    "type" : "short"
+                },
+                "spi" : {
+                    "type" : "keyword"
+                },
+                "speed" : {
+                    "type" : "short"
+                },
+                "origin_country" : {
+                    "type" : "keyword"
+                },
+                "icao_code" : {
+                    "type" : "keyword"
+                },
+                "squawk" : {
+                    "type" : "keyword"
+                },
+                "@timestamp" : {
+                    "type" : "date"
+                },
+                "baro_altitude" : {
+                    "type" : "long"
+                },
+                "last_contact" : {
+                    "type" : "date"
+                },
+                "callsign" : {
+                    "type" : "keyword"
+                },
+                "location" : {
+                    "type" : "geo_point"
+                },
+                "on_ground" : {
+                    "type" : "boolean"
+                },
+                "position_source" : {
+                    "type" : "keyword"
+                }
+                }
+            }
+            },
+            "composed_of" : [ ],
+            "priority" : 200,
+            "version" : 1,
+            "data_stream" : {
+            "hidden" : false
+            }
+        }
+        }
+    ]
+}
