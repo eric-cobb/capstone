@@ -1,0 +1,4 @@
+[DEFAULT]
+cloud_id = <your-cloud-id-here>
+apikey_id = <your-apikey_id-here>
+apikey = <your-apikey-here>
