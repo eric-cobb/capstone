@@ -1,0 +1,29 @@
+# This is the default pipeline for all incoming Open Sky aircraft 
+# telemetry data.
+
+PUT /_ingest/pipeline/latlon-to-csa
+{
+    "latlon-to-csa" : {
+      "description" : "Reverse geocode longitude-latitude to combined statistical area",
+      "processors" : [
+        {
+          "enrich" : {
+            "field" : "location",
+            "policy_name" : "csa_lookup",
+            "target_field" : "csa",
+            "ignore_missing" : true,
+            "ignore_failure" : true,
+            "description" : "Lookup the csa identifier"
+          }
+        },
+        {
+          "remove" : {
+            "field" : "csa.coordinates",
+            "ignore_missing" : true,
+            "ignore_failure" : true,
+            "description" : "Remove the shape field"
+          }
+        }
+      ]
+    }
+  }
