@@ -1,0 +1,71 @@
+{
+    ".ds-open-sky-2021.12.27-000001" : {
+      "mappings" : {
+        "dynamic" : "false",
+        "_data_stream_timestamp" : {
+          "enabled" : true
+        },
+        "dynamic_templates" : [ ],
+        "properties" : {
+          "@timestamp" : {
+            "type" : "date"
+          },
+          "baro_altitude" : {
+            "type" : "long"
+          },
+          "callsign" : {
+            "type" : "keyword"
+          },
+          "csa" : {
+            "properties" : {
+              "GEOID" : {
+                "type" : "keyword"
+              },
+              "NAME" : {
+                "type" : "keyword"
+              }
+            }
+          },
+          "geo_altitude" : {
+            "type" : "long"
+          },
+          "heading" : {
+            "type" : "short"
+          },
+          "icao_code" : {
+            "type" : "keyword"
+          },
+          "last_contact" : {
+            "type" : "date"
+          },
+          "last_position_report" : {
+            "type" : "date"
+          },
+          "location" : {
+            "type" : "geo_point"
+          },
+          "on_ground" : {
+            "type" : "boolean"
+          },
+          "origin_country" : {
+            "type" : "keyword"
+          },
+          "position_source" : {
+            "type" : "keyword"
+          },
+          "speed" : {
+            "type" : "short"
+          },
+          "spi" : {
+            "type" : "keyword"
+          },
+          "squawk" : {
+            "type" : "keyword"
+          },
+          "vertical_speed" : {
+            "type" : "short"
+          }
+        }
+      }
+    }
+  }
