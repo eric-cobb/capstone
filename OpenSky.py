@@ -16,6 +16,12 @@ def sanitize_str(field):
     """
     Strip all whitespace from the string. Some of the data has extra
     space around some of the values which messes with the tokenizer
+
+    Parameters
+    ----------
+    field : str
+        Whaetever string is passed to be santized. Currently, this is
+        only the 'callsign'
     """
 
     if field is None:
@@ -26,6 +32,11 @@ def sanitize_num(field):
     """
     Numeric fields need to contain a number, so if they contain the 
     empty string, make it a 0
+
+    Parameters
+    ----------
+    field : int
+        This could be any number of values (speed, altitude, etc)
     """
 
     if field is None:
@@ -37,6 +48,12 @@ def convert_source(field):
     Map numeric values for the position/telemetry source to string
     representations of the source that actually makes sense to 
     non-computers (aka humans)
+
+    Parameters
+    ----------
+    field : int
+        The number corresponding to the type of equipment producing
+        the telemetry data
     """
 
     if (field == 0): 
