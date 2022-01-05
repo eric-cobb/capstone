@@ -1,0 +1,23 @@
+# Enrich policy to add the GEOID and NAME fields from the Census 
+# Bureau's Combined Statistical Areas geomap. This enrichment is used 
+# to aggregate aircraft telemetry (primarily lat/lon location) against 
+# predefined geographic areas. I use this to display it on a map.
+{
+    "policies" : [
+      {
+        "config" : {
+          "geo_match" : {
+            "name" : "csa_lookup",
+            "indices" : [
+              "census-bureau-boundaries"
+            ],
+            "match_field" : "coordinates",
+            "enrich_fields" : [
+              "GEOID",
+              "NAME"
+            ]
+          }
+        }
+      }
+    ]
+  }
