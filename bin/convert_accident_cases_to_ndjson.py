@@ -10,7 +10,7 @@ def main(arg):
 
     # Output NDJSON file to write to
     file_basename = os.path.basename(file).split('.')[0]
-    df = open('/Users/ericcobb/Git/capstone/output/' + file_basename + '.ndjson', "w")
+    df = open(os.path.dirname(os.path.abspath(__file__)) + '/../data/output/' + file_basename + '.ndjson', "w")
     for rec in data:
         data_string = {}
         data_string['mkey'] = rec['cm_mkey']
@@ -235,9 +235,3 @@ if __name__ == '__main__':
         main(filename)
     except IndexError:
         print("No filename given")
-    #for res in result:
-    #    print(res) 
-
-    #with open("/Users/ericcobb/Git/capstone/data/accidents/cases2017.ndjson", "w") as obj:
-    #    for i in result:
-    #        obj.write(i+'\n') 
