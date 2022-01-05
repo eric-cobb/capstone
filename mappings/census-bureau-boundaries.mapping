@@ -1,0 +1,74 @@
+{
+    "census-bureau-boundaries" : {
+      "mappings" : {
+        "_meta" : {
+          "created_by" : "file-data-visualizer"
+        },
+        "properties" : {
+          "AFFGEOID" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "ALAND" : {
+            "type" : "long"
+          },
+          "AWATER" : {
+            "type" : "long"
+          },
+          "CBSAFP" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "CSAFP" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "GEOID" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "LSAD" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "NAME" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "coordinates" : {
+            "type" : "geo_shape"
+          }
+        }
+      }
+    }
+  }
