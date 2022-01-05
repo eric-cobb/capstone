@@ -171,6 +171,17 @@ def setup_sensors(filename):
 # Not currently used, though was intended to be used to persist 
 # sensor states between executions    
 def write_sensor_status(filename, status):
+    """
+    Write sensor object status information to a file
+
+    Parameters
+    ----------
+    filename : str
+        The file to which to write ADS-B sensor data
+    status : str
+        The status information line expressed as NDJSON (for bulk
+        loading into ES)
+    """
     filename.write(status + '\n')
 
 def main():
