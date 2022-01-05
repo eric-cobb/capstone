@@ -112,6 +112,9 @@ def gen_actions(opensky_states):
         Contains all the state vector (telemetry) data for multiple aircraft
     """
 
+    # All of the speed/altitude numbers from OpenSky are expressed in 
+    # meters, so the math in some of the fields below is to convert
+    # everything to Imperial units. Because 'merica.
     for sky_state in opensky_states.states:
         doc = {
 	    "_index": "open-sky", # Changed from 'sky-traffic-000001' to use Data Stream instead of Index - ecobb 12/27/2021
