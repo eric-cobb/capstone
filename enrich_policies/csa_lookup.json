@@ -2,6 +2,17 @@
 # Bureau's Combined Statistical Areas geomap. This enrichment is used 
 # to aggregate aircraft telemetry (primarily lat/lon location) against 
 # predefined geographic areas. I use this to display it on a map.
+
+PUT /_enrich/policy/csa_lookup
+{
+  "geo_match": {
+    "indices": "census-bureau-boundaries",
+    "match_field": "coordinates",
+    "enrich_fields": [ "GEOID", "NAME"]
+  }
+}
+
+GET /_enrich/policy/csa_lookup
 {
     "policies" : [
       {
